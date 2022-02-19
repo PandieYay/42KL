@@ -11,22 +11,25 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "functions.h"
 
 int checknumber (int argc, char **argv);
 
 int	main (int argc, char **argv)
 {
-	printf("%d", argc);
+	// printf("%d", argc);
+	if (checknumber(argc, argv) == 1)
+		return (0);
 	printf("%s", argv[1]);
-	checknumber(argc, argv);
 }
 
 int checknumber (int argc, char **argv)
 {
-	if (argc == 0)
-		return(0);
-	printf("%s", argv[1]);
-	return(0);
+	if (argc != 2)
+		return (1);
+	if (ft_strlen(argv[1]) != 31)
+		return (1);
+	return (0);
 }
 
 // int check(int ac, char **av)
