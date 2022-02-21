@@ -9,48 +9,92 @@
 /*   Updated: 2022/02/19 14:08:21 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include "functions.h"
 
-int	main (int argc, char **argv)
+int		ft_strlen(char *str);
+void	ft_putnbr(int nb);
+void	ft_putstr(char *str);
+int		solve(int *tab[4], int entry[16], int pos);
+
+void	display_solution(int *tab[4])
 {
-	// int tab[4][4] = {
-	// 	{0, 0, 0, 0},
-	// 	{0, 0, 0, 0},
-	// 	{0, 0, 0, 0},
-	// 	{0, 0, 0, 0},	
-	// };
-	// int *entry;
+	int	i;
+	int	j;
 
-	if (checknumber(argc, argv) == 1)
-		return (0);
-	printf("%s", argv[1]);
-	// entry = get_numbers(argv[1]);
+	i = -1;
+	while (++i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			ft_putnbr(tab[i][j]);
+			if (j != 3)
+				write(1, " ", 1);
+			j++;
+		}
+		write(1, "\n", 1);
+	}
 }
 
-int	checknumber (int argc, char **argv)
+int	checknumber(int argc, char **argv)
 {
 	if (argc != 2)
-		return (1);
+		return (0);
 	else if (ft_strlen(argv[1]) != 31)
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
-int *get_numbers(char *str)
+int	*get_numbers(char *str)
 {
-	int i;
-	int j;
-	int *tab;
+	int	i;
+	int	j;
+	int	*tab;
 
-	if (!(tab = malloc(sizeof(int) * 16)))
+	tab = malloc(sizeof(int) * 16);
+	if (!tab)
 		return (0);
-	i = -1;
+	i = 0;
 	j = 0;
-	while (str[++i] != '\0')
-		if (str[i] >= '0' && str[i] <= '9')
-			tab[j++] = ft_atoi(str + i);
+	while (str[i] != '\0')
+	{
+		if (i % 2 != 0)
+		{
+			if (str[i] != ' ')
+				return (0);
+		}
+		else
+			if (str[i] >= '1' && str[i] <= '4')
+				tab[j++] = str[i] - '0';
+		i++;
+	}
 	return (tab);
+}
+
+int	main(int argc, char **argv)
+{
+	int	*tab[4];
+	int	i;
+	int	*entry;
+
+	i = -1;
+	while (i++ < 4)
+		tab[i] = (int *)malloc(sizeof(int) * 4);
+	entry = get_numbers(argv[1]);
+	if (checknumber(argc, argv) == 0)
+	{
+		ft_putstr("Error\n");
+		return (0);
+	}
+	if (entry == 0)
+	{
+		ft_putstr("Error\n");
+		return (0);
+	}
+	if (solve(tab, entry, 0) == 1)
+		display_solution(tab);
+	else
+		ft_putstr("Error\n");
+	return (0);
 }

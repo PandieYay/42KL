@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   common.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: edlim <edlim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/20 10:28:49 by edlim             #+#    #+#             */
+/*   Updated: 2022/02/20 10:28:51 by edlim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include <unistd.h>
+
 //Gives the length of string
 int	ft_strlen(char *str)
 {
@@ -11,23 +24,37 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int ft_atoi(char *str)
+//Displays the true number
+void	ft_putnbr(int nb)
 {
-	int i;
-	int nbr;
-	int nbrminus;
+	int	truenumber;
 
-	i = 0;
-	nbr = 0;
-	nbrminus = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	while (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			nbrminus++;
-	while (str[i] >= '0' && str[i] <= '9')
-		nbr = nbr * 10 + (str[i++] - '0');
-	if (nbrminus % 2 == 1)
-		return (nbr * -1);
-	return (nbr);
+	if (nb < 0)
+	{
+		write (1, "-", 1);
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10)
+	{
+		truenumber = nb + 48;
+		write(1, &truenumber, 1);
+	}
+}
+
+//Displays string (for error)
+void	ft_putstr(char *str)
+{
+	int	counter;
+
+	counter = 0;
+	while (str[counter] != 0)
+	{
+		write(1, &str[counter], 1);
+		counter++;
+	}
 }
