@@ -26,10 +26,7 @@ void	ft_putstr(char *str)
 int	main(int argc, char **argv)
 {
 	int		i;
-	char	*str;
 
-	(void)argc;
-	str = argv[0];
 	i = 1;
 	while (i < argc)
 	{
