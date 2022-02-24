@@ -10,30 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include <stdio.h>
 
-int ft_ultimate_range(int **range, int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
+	int	*arr;
 	int	i;
-	int	temp;
 
-	i = 0;
 	if (min >= max)
+	{
+		*range = NULL;
 		return (0);
-	range = malloc(max - min);
-	temp = min;
+	}
+	arr = malloc((max - min) * sizeof(int));
+	if (arr == 0)
+		return (-1);
+	i = 0;
 	while (min < max)
 	{
-		range[i] = &min;
+		arr[i] = min;
 		min++;
 		i++;
 	}
-	min = temp;
-	return (max - min);
-}
-
-int main(void)
-{
-	int	*str;
-	printf("%d", ft_ultimate_range(&str, 0, 5));
+	*range = arr;
+	return (i);
 }

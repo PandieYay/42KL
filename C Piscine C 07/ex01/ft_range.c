@@ -19,12 +19,13 @@ int	*ft_range(int min, int max)
 	i = 0;
 	if (min >= max)
 		return (0);
-	arr = malloc(max);
+	arr = malloc((max - min) * (sizeof(int)));
 	while (min < max)
 	{
 		arr[i] = min;
 		min++;
 		i++;
 	}
+	arr[i] = '\0';
 	return (arr);
 }
