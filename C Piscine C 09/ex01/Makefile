@@ -8,9 +8,9 @@ libft.a:
 all: libft.a
 
 clean:
-	rm ./srcs/*.o
+	rm -f ./srcs/*.o
 
 fclean: clean
-	rm libft.a
+	rm -f libft.a
 
 re: fclean all
