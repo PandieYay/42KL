@@ -1,16 +1,19 @@
-srcs = ./srcs/*.c
+NAME = libft.a
+SRCS = srcs/ft_putchar.c srcs/ft_putstr.c srcs/ft_strcmp.c srcs/ft_strlen.c srcs/ft_swap.c
+OBJS = ${SRCS:.c=.o}
 
-libft.a:
-	gcc -Wall -Wextra -Werror -c ${srcs}
-	ar rc libft.a *.o
-	mv *.o ./srcs
+.c.o:
+		gcc -Wall -Wextra -Werror -I includes -c $< -o ${<:.c=.o}
 
-all: libft.a
+${NAME}: ${OBJS}
+		ar rcs ${NAME} ${OBJS}
+
+all: ${NAME}
 
 clean:
-	rm -f ./srcs/*.o
+		rm -f ${OBJS}
 
 fclean: clean
-	rm -f libft.a
+		rm -f ${NAME}
 
 re: fclean all
