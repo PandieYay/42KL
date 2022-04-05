@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edlim <edlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 11:36:58 by edlim             #+#    #+#             */
-/*   Updated: 2022/04/05 11:36:58 by edlim            ###   ########.fr       */
+/*   Created: 2022/04/05 18:42:03 by edlim             #+#    #+#             */
+/*   Updated: 2022/04/05 18:42:05 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strnstr(const char *str, char *to_find, size_t len)
 {
-	int	len;
+	size_t	counter;
+	size_t	to_find_c;
 
-	len = ft_strlen((char *)s);
-	while (len >= 0)
+	counter = 0;
+	if (to_find[0] == 0)
+		return ((char *)str);
+	while (str[counter] != 0 && counter < len)
 	{
-		if (*(s + len) == (char) c)
+		to_find_c = 0;
+		while ((counter + to_find_c) < len
+			&& (str[counter + to_find_c] == to_find[to_find_c]))
 		{
-			return ((char *)s + len);
+			if (to_find[to_find_c + 1] == 0)
+				return (&((char *)str)[counter]);
+			else
+				to_find_c++;
 		}
-		len--;
+		counter++;
 	}
 	return (0);
 }
