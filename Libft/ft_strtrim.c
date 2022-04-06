@@ -52,20 +52,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*trimmedstr;
 	int		i;
-	int		trimmedc;
 
 	i = 0;
-	trimmedc = 0;
 	trimmedstr = malloc(sizeof(char) * (ft_strlen(s1) - letters(s1, set) + 1));
 	if (!trimmedstr)
 		return (NULL);
 	while (*s1 != 0)
 	{
 		s1 = checkset(s1, set);
-		trimmedstr[trimmedc] = *s1;
-		trimmedc++;
+		trimmedstr[i] = *s1;
+		i++;
 		s1++;
 	}
-	trimmedstr[trimmedc] = 0;
+	trimmedstr[i] = 0;
 	return (trimmedstr);
 }

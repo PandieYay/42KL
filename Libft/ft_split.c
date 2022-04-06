@@ -13,11 +13,8 @@
 
 int	seperator(char c, char charset)
 {
-	int	i;
-
 	if (c == '\0')
 		return (1);
-	i = 0;
 	if (c == charset)
 		return (1);
 	return (0);
