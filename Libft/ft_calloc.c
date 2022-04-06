@@ -13,10 +13,12 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*str;
+	char	*str;
 
 	if (count == 0 || size == 0)
 		return (NULL);
 	str = malloc(size * count);
+	if (!str)
+		return (NULL);
 	return (str);
 }

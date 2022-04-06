@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edlim <edlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:39:30 by edlim             #+#    #+#             */
-/*   Updated: 2022/04/05 15:39:31 by edlim            ###   ########.fr       */
+/*   Created: 2022/04/06 16:56:07 by edlim             #+#    #+#             */
+/*   Updated: 2022/04/06 16:56:08 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*dest;
+	int		i;
 
 	i = 0;
-	if (src < dest)
+	dest = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	while (s1[i] != 0)
 	{
-		while (n--)
-			((char *)dest)[n] = ((char *)src)[n];
+		dest[i] = s1[i];
+		i++;
 	}
-	else if (src > dest)
+	while (*s2 != 0)
 	{
-		while (i < n)
-		{
-			((char *)dest)[i] = ((char *)src)[i];
-			i++;
-		}
+		dest[i] = *s2;
+		s2++;
+		i++;
 	}
+	dest[i] = 0;
 	return (dest);
 }

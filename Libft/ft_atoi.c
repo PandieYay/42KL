@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edlim <edlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:39:30 by edlim             #+#    #+#             */
-/*   Updated: 2022/04/05 15:39:31 by edlim            ###   ########.fr       */
+/*   Created: 2022/04/06 11:22:38 by edlim             #+#    #+#             */
+/*   Updated: 2022/04/06 11:22:39 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
+	int	nb;
+	int	minusi;
+	int	i;
 
+	nb = 0;
+	minusi = 1;
 	i = 0;
-	if (src < dest)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
 	{
-		while (n--)
-			((char *)dest)[n] = ((char *)src)[n];
+		minusi = -minusi;
+		i++;
 	}
-	else if (src > dest)
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		while (i < n)
-		{
-			((char *)dest)[i] = ((char *)src)[i];
-			i++;
-		}
+		nb = nb * 10 + (str[i] - 48);
+		i++;
 	}
-	return (dest);
+	return (nb * minusi);
 }
