@@ -37,7 +37,7 @@ int	count_words(char const *str, char c)
 	return (strs);
 }
 
-void	ft_putstr(char *dest, char *src, int j)
+void	ft_strcpy(char *dest, char *src, int j)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ void	split(char **dest, char const *str, char c)
 			while (seperator(str[i + size], c) == 0)
 				size++;
 			dest[strs] = malloc(sizeof(char) * (size + 1));
-			ft_putstr(dest[strs], (char *)str + i, size);
+			ft_strcpy(dest[strs], (char *)str + i, size);
 			i += size;
 			strs++;
 		}
