@@ -37,6 +37,19 @@ int	count_words(char const *str, char c)
 	return (strs);
 }
 
+void	ft_putstr(char *dest, char *src, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
 void	split(char **dest, char const *str, char c)
 {
 	int		i;
@@ -55,6 +68,7 @@ void	split(char **dest, char const *str, char c)
 			while (seperator(str[i + size], c) == 0)
 				size++;
 			dest[strs] = malloc(sizeof(char) * (size + 1));
+			ft_putstr(dest[strs], (char *)str + i, size);
 			i += size;
 			strs++;
 		}
@@ -68,7 +82,7 @@ char	**ft_split(char const *s, char c)
 
 	strs = count_words(s, c);
 	dest = malloc(sizeof(char *) * (strs + 1));
-	dest[strs] = 0;
 	split(dest, s, c);
+	dest[strs] = 0;
 	return (dest);
 }
