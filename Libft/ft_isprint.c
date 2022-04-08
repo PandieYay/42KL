@@ -12,7 +12,7 @@
 
 int	ft_isprint(int c)
 {
-	if (c < '\040' || c == '\177')
+	if (c < '\040' || c > '\176')
 		return (0);
 	return (1);
 }

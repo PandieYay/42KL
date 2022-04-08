@@ -15,10 +15,11 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	char	*str;
 
-	if (count == 0 || size == 0)
+	if (count > 4294967295 || size > 4294967295)
 		return (NULL);
 	str = malloc(size * count);
 	if (!str)
 		return (NULL);
+	ft_bzero(str, count * size);
 	return (str);
 }
