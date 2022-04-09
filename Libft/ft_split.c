@@ -80,8 +80,12 @@ char	**ft_split(char const *s, char c)
 	char	**dest;
 	int		strs;
 
+	if (!s)
+		return (NULL);
 	strs = count_words(s, c);
 	dest = malloc(sizeof(char *) * (strs + 1));
+	if (!dest)
+		return (NULL);
 	split(dest, s, c);
 	dest[strs] = 0;
 	return (dest);
