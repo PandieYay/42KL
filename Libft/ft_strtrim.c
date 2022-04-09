@@ -9,61 +9,64 @@
 /*   Updated: 2022/04/06 18:50:47 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	letters(char const *s1, char const *set)
+int	fronttrim(char const *s1, char const *set)
 {
-	int	letters;
 	int	i;
+	int	k;
+	int true;
 
-	letters = 0;
-	while (*s1 != 0)
+	i = 0;
+	while (s1[i] != 0)
 	{
-		i = 0;
-		while (set[i] != 0)
+		true = 0;
+		k = 0;
+		while (set[k] != 0)
 		{
-			if (*s1 == set[i])
-				letters++;
-			i++;
+			if (s1[i] == set[k])
+				true = 1;
+			k++;
 		}
-		s1++;
+		if (true != 1)
+			break ;
+		i++;
 	}
-	return (letters);
+	return (i);
 }
 
-char const	*checkset(char const *s1, char const *set)
+int	backtrim(char const *s1, char const *set)
 {
 	int	i;
+	int	k;
+	int	true;
 
-	i = -1;
-	while (set[++i] != 0)
+	i = ft_strlen(s1) - 1;
+	while (s1[i] != 0)
 	{
-		if (*s1 == set[i])
+		true = 0;
+		k = 0;
+		while (set[k] != 0)
 		{
-			s1++;
-			i = -1;
+			if (s1[i] == set[k])
+				true = 1;
+			k++;
 		}
+		if (true != 1)
+			break ;
+		i--;
 	}
-	return (s1);
+	return (i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trimmedstr;
-	int		i;
+	int	start;
+	int	end;
 
-	i = 0;
-	trimmedstr = malloc(sizeof(char) * (ft_strlen(s1) - letters(s1, set) + 1));
-	if (!trimmedstr)
+	if (!s1 || !set)
 		return (NULL);
-	while (*s1 != 0)
-	{
-		s1 = checkset(s1, set);
-		trimmedstr[i] = *s1;
-		i++;
-		s1++;
-	}
-	trimmedstr[i] = 0;
-	return (trimmedstr);
+	start = fronttrim(s1, set);
+	end = backtrim(s1, set);
+	return(ft_substr(s1, start, (end - start + 1)));
 }
