@@ -15,7 +15,7 @@ int	fronttrim(char const *s1, char const *set)
 {
 	int	i;
 	int	k;
-	int true;
+	int	true;
 
 	i = 0;
 	while (s1[i] != 0)
@@ -68,5 +68,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = fronttrim(s1, set);
 	end = backtrim(s1, set);
-	return(ft_substr(s1, start, (end - start + 1)));
+	return (ft_substr(s1, start, (end - start + 1)));
 }

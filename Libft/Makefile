@@ -13,7 +13,7 @@ BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 %.o : %.c
 	gcc -Wall -Wextra -Werror -I . -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS}
+$(NAME): ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
 all: ${NAME}
