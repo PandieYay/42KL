@@ -16,5 +16,9 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strdup(char *src);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
