@@ -88,4 +88,14 @@ char	*get_next_line(int fd)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }
+
+First I check if fd is invalid, then I malloc buffer wtih buffer size.
+Reason why not buffer[BUFFER_SIZE + 1] is because it cannot handle too
+much memory. Then I read the text file in read_file and store the read
+file inside str. I only read as much as BUFFER_SIZE allows me to and if 
+I find '\n' inside str I stop. After that, I check if str is null incase
+there was nothing to read. Then free buffer. I also check if the first
+of str[i] is null, if it is that means str has finished through entire file.
+Else, find_nl which just increments the index counter for str.
+Finally, I return the line in str between the start, and length between '\n'.
 */
