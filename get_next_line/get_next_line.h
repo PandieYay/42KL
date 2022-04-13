@@ -15,9 +15,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
+
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int i, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
