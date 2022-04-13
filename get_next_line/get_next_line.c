@@ -13,6 +13,13 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+void check(char **str)
+{
+	if (str || *str)
+		free(*str);
+	*str = NULL;
+}
+
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -29,7 +36,7 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	text = 1;
-	while (text > 0)
+	while (text > 0 && ft_strchr(str, i, '\n') == 0)
 	{
 		text = read(fd, buffer, BUFFER_SIZE);
 		if (text ==	 -1)
@@ -40,10 +47,13 @@ char	*get_next_line(int fd)
 		buffer[text] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
-	free(buffer);
+	check(&buffer);
 	start = i;
 	if (!str[i])
-			return (NULL);
+	{
+		check(&str);
+		return (NULL);
+	}
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
@@ -53,7 +63,7 @@ char	*get_next_line(int fd)
 		}
 		i++;
 	}
-	line = malloc(sizeof(char) * (i - start + 1));
+	line = malloc(sizeof(char) * (i - start));
 	k = 0;
 	while (str[start + k] != '\0')
 	{
@@ -73,12 +83,13 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {
 // 	int	fd;
+// 	// // int i = 0;
+// 	// char c = 0;
 
 // 	fd = open("test.txt", O_RDONLY);
 // 	printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
 // 	// printf("%s", get_next_line(fd));
 // 	// printf("%s", get_next_line(fd));
 // }

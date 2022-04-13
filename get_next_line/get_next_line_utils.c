@@ -12,29 +12,21 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strchr(char *s, int i, int c)
 {
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (s[i] == (char) c)
+		{
+			return (&s[i]);
+		}
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*dest;
-
-	dest = malloc(ft_strlen(src) + 1);
-	if (dest == 0)
-		return (0);
-	ft_strcpy(dest, src);
-	return (dest);
+	if (s[i] == (char)c)
+		return (&s[i]);
+	return (0);
 }
 
 char	*ft_strjoin(char *s1, char const *s2)
