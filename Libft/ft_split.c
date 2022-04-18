@@ -50,7 +50,7 @@ void	ft_strcpysplit(char *dest, char *src, int j)
 	dest[i] = '\0';
 }
 
-void	split(char **dest, char const *str, char c)
+static void	splitit(char **dest, char const *str, char c)
 {
 	int		i;
 	int		size;
@@ -86,7 +86,7 @@ char	**ft_split(char const *s, char c)
 	dest = malloc(sizeof(char *) * (strs + 1));
 	if (!dest)
 		return (NULL);
-	split(dest, s, c);
+	splitit(dest, s, c);
 	dest[strs] = 0;
 	return (dest);
 }
