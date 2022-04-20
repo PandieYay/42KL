@@ -56,7 +56,7 @@ static char	*zero(char *str)
 	return (str);
 }
 
-char	*ft_usitoa(unsigned int n)
+char	*ft_unsigneditoa(unsigned int n)
 {
 	char				*str;
 	unsigned int		i;

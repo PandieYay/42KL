@@ -20,8 +20,11 @@
 int		ft_printf(const char *format, ...);
 int		ft_putchar(char c);
 int		ft_putstr(char *str);
+int		formatdi(int nb);
+int		formatu(unsigned int nb);
 int		dectohex(unsigned int nb, char *base);
+int		longdectohex(unsigned long nb, char *base);
 char	*ft_itoa(int n);
-char	*ft_usitoa(unsigned int n);
+char	*ft_unsigneditoa(unsigned int n);
 
 #endif

@@ -1,58 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   dectohex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edlim <edlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 14:12:42 by edlim             #+#    #+#             */
-/*   Updated: 2022/04/20 14:12:42 by edlim            ###   ########.fr       */
+/*   Created: 2022/04/20 14:19:28 by edlim             #+#    #+#             */
+/*   Updated: 2022/04/20 14:19:28 by edlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+static int	hexlen(size_t nb)
 {
-	write(1, &c, 1);
-	return (1);
+	int	count;
+
+	count = 0;
+	if (nb == 0)
+		count++;
+	while (nb > 0)
+	{
+		nb = nb / 16;
+		count++;
+	}
+	return (count);
 }
 
-int	ft_putstr(char *str)
+static void	ft_put_base(size_t nb, char *base)
 {
-	int	counter;
+	size_t	len;
 
-	counter = 0;
-	if (str == NULL)
+	len = 0;
+	while (base[len])
+		len++;
+	if (nb >= len)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		ft_put_base(nb / len, base);
+		ft_put_base(nb % len, base);
 	}
-	while (str[counter] != 0)
-	{
-		write(1, &str[counter], 1);
-		counter++;
-	}
-	return (counter);
+	else
+		ft_putchar(base[nb]);
 }
 
-int	formatdi(int nb)
+int	longdectohex(unsigned long nb, char *base)
 {
 	int		i;
-	char	*str;
 
-	str = ft_itoa(nb);
-	i = ft_putstr(str);
-	free(str);
-	return (i);
-}
-
-int	formatu(unsigned int nb)
-{
-	int		i;
-	char	*str;
-
-	str = ft_unsigneditoa(nb);
-	i = ft_putstr(str);
-	free(str);
+	i = 0;
+	ft_put_base(nb, base);
+	i = hexlen(nb);
 	return (i);
 }
