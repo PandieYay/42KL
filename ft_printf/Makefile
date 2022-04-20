@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-SRCS = ./ft_printf.c ./utils.c ./ft_itoa.c ./ft_usitoa.c
+SRCS = ./ft_printf.c ./utils.c ./ft_itoa.c ./ft_usitoa.c ./dectohex.c
 BONUS_SRCS = 
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}

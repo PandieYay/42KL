@@ -18,6 +18,9 @@
 # include <unistd.h>
 
 int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		dectohex(unsigned int nb, char *base);
 char	*ft_itoa(int n);
 char	*ft_usitoa(unsigned int n);
 
