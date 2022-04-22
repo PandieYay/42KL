@@ -108,3 +108,8 @@ static int	checkpercent(va_list args, const char *format)
 // 	printf(" %%%% ");
 // 	ft_printf(" %%%% ");
 // }
+/*ft_printf:
+1: Check if there is a % sign, else write 1 char
+2: If % sign, read next char after % and check if it
+is one of the formats
+3: If it is, execute the format, else return -1 (error)*/
