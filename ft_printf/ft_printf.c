@@ -12,6 +12,7 @@
 #include "ft_printf.h"
 
 static void	checkformat(char **format, int *i);
+static int	checkerror(const char *format);
 static int	checkpercent(va_list args, const char *format);
 
 int	ft_printf(const char *format, ...)
@@ -26,9 +27,9 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			i += checkpercent(args, format);
-			if (i == -1)
+			if (checkerror(format) == -1)
 				return (-1);
+			i += checkpercent(args, format);
 			format++;
 		}
 		checkformat(((char **)&format), &i);
@@ -45,6 +46,32 @@ static void	checkformat(char **format, int *i)
 		(*format)++;
 		(*i)++;
 	}
+}
+
+static int	checkerror(const char *format)
+{
+	int	i;
+
+	i = 0;
+	if (*format == 'c')
+		i = 1;
+	else if (*format == 's')
+		i = 1;
+	else if (*format == 'p')
+		i = 1;
+	else if (*format == 'd' || *format == 'i')
+		i = 1;
+	else if (*format == 'u')
+		i = 1;
+	else if (*format == 'x')
+		i = 1;
+	else if (*format == 'X')
+		i = 1;
+	else if (*format == '%')
+		i = 1;
+	else
+		i = -1;
+	return (i);
 }
 
 static int	checkpercent(va_list args, const char *format)
