@@ -1,19 +1,21 @@
 #include "minitalk.h"
 #include <stdio.h>
 
-void handle_sigusr()
+void handler(int sig)
 {
-	signal(SIGUSR1, handle_sigusr);
-    ft_putstr("Hi");
+    ft_putstr("I wont die!\n");
+	ft_putnbr(sig);
 }
 
 int	main(void)
 {
 	int	pid;
+	struct sigaction sa;
+	sa.sa_handler = handler;
 
 	pid = getpid();
 	ft_putstr("Server PID: ");
 	ft_putnbr(pid);
-	signal(SIGUSR1, handle_sigusr);
+	sigaction(SIGUSR1, &sa, NULL);
 	while(1);
 }

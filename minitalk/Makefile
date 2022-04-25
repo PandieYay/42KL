@@ -5,18 +5,17 @@ SRCS = Libft/ft_atoi.c Libft/ft_putstr.c
 OBJS = ${SRCS:.c=.o}
 FLAGS = -Wall -Wextra -Werror
 
-%.o : %.c
-	gcc ${FLAGS} -I . -c $< -o ${<:.c=.o}
+all:
+	gcc ${FLAGS} -o server server.c Libft/*.c
+	gcc ${FLAGS} -o client client.c Libft/*.c
 
 $(NAME): ${OBJS}
 	ar rcs ${NAME} ${OBJS}
-
-all: ${NAME} ${CLIENT} ${SERVER}
 
 clean:
 	rm -f ${OBJS}
 
 fclean: clean
-	rm -f ${NAME}
+	rm -f ${SERVER} ${CLIENT}
 
 re: fclean all
